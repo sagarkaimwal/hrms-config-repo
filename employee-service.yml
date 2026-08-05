@@ -1,20 +1,17 @@
 server:
   port: 8081
+
 spring:
   application:
     name: employee-service
-
   datasource:
     url: jdbc:mysql://localhost:3306/employee_db
     username: root
     password: root
-
   jpa:
     hibernate:
       ddl-auto: update
-
     show-sql: true
-
     properties:
       hibernate:
         format-sql: true
@@ -23,7 +20,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-
   instance:
     prefer-ip-address: true
 
@@ -35,3 +31,15 @@ resilience4j:
         failureRateThreshold: 50
         waitDurationInOpenState: 10s
         permittedNumberOfCallsInHalfOpenState: 3
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    export:
+      zipkin:
+        endpoint: http://localhost:9411/api/v2/spans
+  endpoints:
+    web:
+      exposure:
+        include: "*" # Yahan spelling theek kar di gayi hai
