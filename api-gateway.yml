@@ -24,6 +24,11 @@ spring:
               uri: lb://DEPARTMENT-SERVICE
               predicates:
                 - Path=/api/v1/departments/**
+
+            - id: leave-service
+              uri: lb://LEAVE-SERVICE
+              predicates:
+                - Path=/api/v1/leaves/**
                       
 eureka:
   client:
